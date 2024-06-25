@@ -1,0 +1,48 @@
+{
+    "Data":[{
+        "Store Name":"24-Seven",
+        "Revenue":428214.13,
+        "Cost":94383.52,
+        "Consumption":76855.15368,
+        "Month":"January",
+        "Country":"France",
+        "Amount":167,
+        "CategoryAxis":"Restaurant"
+    },{
+        "Store Name":"Dailry World",
+        "Revenue":752565.16,
+        "Cost":115844.26,
+        "Consumption":98268.9597904,
+        "Month":"February",
+        "Country":"China",
+        "Amount":67,
+        "CategoryAxis":"Beauty"
+    },{
+        "Store Name":"Alexei's Specialities",
+        "Revenue":1331176.706884,
+        "Cost":233160.58,
+        "Consumption":143432.18,
+        "Month":"March",
+        "Country":"France",
+        "Amount":48,
+        "CategoryAxis":"Recreation"
+    },{
+        "Store Name":"Bc Market",
+        "Revenue":1578466.82,
+        "Cost":235072.19,
+        "Consumption":487910.26,
+        "Month":"April",
+        "Country":"China",
+        "Amount":-67,
+        "CategoryAxis":"Services"
+    },{
+        "Store Name":"Choices Franchise",
+        "Revenue":20900030.97,
+        "Cost":397952.77,
+        "Consumption":304964.8856125,
+        "Month":"May",
+        "Country":"France",
+        "Amount":-48,
+        "CategoryAxis":"Retail"
+    }]
+}

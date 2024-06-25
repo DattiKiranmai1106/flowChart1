@@ -1,0 +1,623 @@
+<mvc:View controllerName="com.sap.kt.flow.flowchart1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:g="sap.f" xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" xmlns:com="sap.suite.ui.commons"  	xmlns:layout="sap.ui.layout" 
+    xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"  xmlns:m="sap.m">
+    <Page id="page" title="{i18n>title}" >
+        <content >
+        <ScrollContainer
+		height="100%"
+		width="100%"
+		vertical="true">
+
+        
+		<g:GridContainer id="demoGrid" class="sapUiSmallMargin" columnsChange=".onGridColumnsChange">
+			<g:layout>
+				<g:GridContainerSettings rowSize="200px" columnSize="49.5%" gap="10px" />
+			</g:layout>
+			<g:layoutXS>
+				<g:GridContainerSettings rowSize="200px" columnSize="49.5%" gap="10px" />
+			</g:layoutXS>
+          
+     <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+                showSelectionDetails="true"
+                personalizationPress="attachPersonalizationPress"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Bar Chart Type" titleStyle="H4"  />
+                    <Button text="Show Table" press="onShowTablePress" />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+				<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType='bar'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{oModelData>/results}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="LIC Type"
+                                value="{oModelData>licType}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Count"
+                                value="{oModelData>licCount}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure"
+                        values="Count" />
+                    <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension"
+                        values="LIC Type" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+						</com:content>
+					</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+
+	</VBox>
+
+   
+
+	<VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer1"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Area Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+				 <viz:VizFrame id="idVizFrame1" uiConfig="{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType='area'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{oModelData1>/milk}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{oModelData1>Week}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{oModelData1>Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{oModelData1>Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed1' uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem id='categoryAxisFeed2' uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver1"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+				</com:content>
+					</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+
+	<VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer2"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Bubble Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+				 <viz:VizFrame id="idVizFrame2" uiConfig="{applicationSet:'fiori'}"
+                  height='21rem' width="40rem" vizType='bubble'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{dataModel>Store Name}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{dataModel>Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{dataModel>Cost}" />
+                            <viz.data:MeasureDefinition name="Consumption"
+                                value="{dataModel>Consumption}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="valueAxis2" type="Measure"
+                        values="Cost" />
+                    <viz.feeds:FeedItem uid="bubbleWidth" type="Measure"
+                        values="Consumption" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver2"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+				</com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer3"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Combination Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+
+                 <viz:VizFrame id="idVizFrame3" uiConfig="{applicationSet:'fiori'}"
+               height='21rem' width="40rem" vizType='combination'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{oModelData1>/milk}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{oModelData1>Week}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{oModelData1>Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{oModelData1>Cost}" />
+                            <viz.data:MeasureDefinition name="Cost2"
+                                value="{oModelData1>Cost}" />
+                            <viz.data:MeasureDefinition name="Cost1"
+                                value="{oModelData1>Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+                        values="Cost" />
+                    <viz.feeds:FeedItem id="feedCategoryAxis" uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver3"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer4"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="DoNut Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+                  <viz:VizFrame id="idVizFrame4" uiConfig="{applicationSet:'fiori'}"
+                 height='21rem' width="40rem" vizType='donut'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{dataModel>Store Name}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{dataModel>Revenue}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension"
+                        values="Store Name" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver4"></viz:Popover>
+                </viz:dependents>
+                </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer5"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="HeatMap Type Chart " titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+                 <viz:VizFrame id = "idVizFrame5" uiConfig = "{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType = 'heatmap'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data = "{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name = "Store Name"
+                                value = "{dataModel>Store Name}" />
+                            <viz.data:DimensionDefinition name = "Month"
+                                value = "{dataModel>Month}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name = "Revenue"
+                                value = "{dataModel>Revenue}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid = "color" type = "Measure"
+                        values = "Revenue" />
+                    <viz.feeds:FeedItem uid = "categoryAxis" type = "Dimension"
+                        values = "Month" />    
+                    <viz.feeds:FeedItem uid = "categoryAxis2" type = "Dimension"
+                        values = "Store Name" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver5"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer6"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Line Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+                 <viz:VizFrame id="idVizFrame6" uiConfig="{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType='line'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{oModelData1>/milk}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{oModelData1>Week}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{oModelData1>Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{oModelData1>Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed6' uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem id='categoryAxisFeed6' uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver6"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer7"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Pie Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+                 <viz:VizFrame id="idVizFrame7" uiConfig="{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType='pie'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{dataModel>Store Name}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{dataModel>Revenue}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension"
+                        values="Store Name" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver7"></viz:Popover>
+                </viz:dependents>
+                </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer8"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Radar Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+
+                 <viz:VizFrame id="idVizFrame8" uiConfig="{applicationSet:'fiori'}"
+               height='21rem' width="40rem" vizType='radar'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{dataModel>Store Name}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{dataModel>Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{dataModel>Cost}" />
+                                <viz.data:MeasureDefinition name="Consumption"
+                                value="{dataModel>Consumption}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed8' uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="Store Name" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver8"></viz:Popover>
+                </viz:dependents>
+                </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+            
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer9"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="Scatter Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+                 <viz:VizFrame id="idVizFrame9" uiConfig="{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType='scatter'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{dataModel>Store Name}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{dataModel>Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{dataModel>Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="valueAxis2" type="Measure"
+                        values="Cost" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver9"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer10"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="TreeMap Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+                 <viz:VizFrame id="idVizFrame10" uiConfig="{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType='treemap'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Country"
+                                value="{dataModel>Country}" />
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{dataModel>Store Name}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{dataModel>Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{dataModel>Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="color" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="weight" type="Measure"
+                        values="Cost" />                     
+                    <viz.feeds:FeedItem uid="title" type="Dimension"
+                        values="Country" />    
+                    <viz.feeds:FeedItem uid="title" type="Dimension"
+                        values="Store Name" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver10"></viz:Popover>
+                </viz:dependents>
+               </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+        
+    <VBox height="25rem" class="sapUiSmallMargin">
+			<com:ChartContainer
+				id="chartContainer11"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="false"
+				contentChange="attachContentChange"
+				>
+				<com:dimensionSelectors>
+				    <Title text="WaterFall Type Chart" titleStyle="H4"  />
+				</com:dimensionSelectors>
+				<com:content>
+				<com:ChartContainerContent>
+				<com:content>
+
+                 <viz:VizFrame id="idVizFrame11" uiConfig="{applicationSet:'fiori'}"
+                height='21rem' width="40rem" vizType='waterfall'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{dataModel>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Type"
+                                value="{dataModel>CategoryAxis}" />
+                            <viz.data:DimensionDefinition name="CategoryAxis"
+                                value="{dataModel>CategoryAxis}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Amount"
+                                value="{dataModel>Amount}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+                        values="Amount" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="CategoryAxis" />
+                    <viz.feeds:FeedItem uid="waterfallType" type="Dimension"
+                        values="Type" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver11"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+                </com:content>
+				</com:ChartContainerContent>
+				</com:content>
+			</com:ChartContainer>
+	</VBox>
+
+        </g:GridContainer> 
+         </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>
